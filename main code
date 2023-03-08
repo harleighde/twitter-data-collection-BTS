@@ -1,0 +1,26 @@
+# For sending GET requests from the API
+import requests
+# For saving access tokens and for file management when creating and adding to the dataset
+import os
+# For dealing with json responses we receive from the API
+import json
+# For displaying the data after
+import pandas as pd
+# For saving the response data in CSV format
+import csv
+# For parsing the dates received from twitter in readable formats
+import datetime
+import dateutil.parser
+import unicodedata
+#To add wait time between requests
+import time
+#bearer token
+os.environ['TOKEN'] = '<AAAAAAAAAAAAAAAAAAAAADplmAEAAAAA7ySeYcNMpZQKKxKU0ANsOiwwHYI%3D1CNGBRc8V90h0aou61IHRoe6tGnko538cdubi3Kgvt9ctevTDq>'
+#retrieves the token from the environment.
+def auth():
+    return os.getenv('TOKEN')
+#define a function that will take my bearer token, pass it for authorization and return headers I will use to access the API.
+def create_headers(bearer_token):
+    headers = {"Authorization": "Bearer {}".format(bearer_token)}
+    return headers
+    
