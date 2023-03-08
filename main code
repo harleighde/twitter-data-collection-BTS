@@ -59,10 +59,10 @@ def connect_to_endpoint(url, headers, params, next_token = None):
 bearer_token = auth()
 headers = create_headers(bearer_token)
 
-#keywords, (__ __ = __ and __), (___) OR (___) = either one.
-keyword = "(BTS fans) OR (BTS fangirls) OR (BTS kpop) OR (BTS crazy) lang:en"
+#keywords, (__ __ = __ and __), (___) OR (___) = either one. Language = english
+keyword = "(BTS fans) OR (BTS fangirls) OR (BTS kpop) OR (BTS crazy) OR (BTS fanboys) OR (BTS crazy fans) OR (BTS crazy females) OR (BTS crazy) OR (BTS billboard fans) OR (BTS Grammys) lang:en"
 
-#dates included
+#dates included, between 2017 and 2018
 start_time = "2017-03-01T00:00:00.000Z"
 end_time = "2018-03-31T00:00:00.000Z"
 
