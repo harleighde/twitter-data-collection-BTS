@@ -68,3 +68,15 @@ end_time = "2018-03-31T00:00:00.000Z"
 
 #results returned
 max_results = 500
+
+#encoder/decoder
+#successful if = 200
+url = create_url(keyword, start_time,end_time, max_results)
+json_response = connect_to_endpoint(url[0], headers, url[1])
+
+#make readable
+print(json.dumps(json_response, indent=4, sort_keys=True))
+
+#retrieve the time from the first tweet
+json_response['data'][0]['created_at']
+
