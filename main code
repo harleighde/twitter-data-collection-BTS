@@ -23,12 +23,15 @@ def auth():
 def create_headers(bearer_token):
     headers = {"Authorization": "Bearer {}".format(bearer_token)}
     return headers
+
+
 # request for the endpoint I am going to use and the parameters I want to pass
 def create_url(keyword, start_date, end_date, max_results = 500):
     
     search_url = "https://api.twitter.com/2/tweets/search/all" #Change to the endpoint you want to collect data from
 
-    #change params based on the endpoint you are using
+   
+   #change params based on the endpoint you are using
 #query: word to search for/keyword
     query_params = {'query': keyword,
                     'start_time': start_date,
@@ -40,3 +43,28 @@ def create_url(keyword, start_date, end_date, max_results = 500):
                     'place.fields': 'full_name,id,country,country_code,geo,name,place_type',
                     'next_token': {}}
     return (search_url, query_params)
+
+#connect endpoints
+
+def connect_to_endpoint(url, headers, params, next_token = None):
+    params['next_token'] = next_token   #params object received from create_url function
+    response = requests.request("GET", url, headers = headers, params = params)
+    print("Endpoint Response Code: " + str(response.status_code))
+    if response.status_code != 200:
+        raise Exception(response.status_code, response.text)
+    return response.json()
+    
+    
+#Inputs for the request
+bearer_token = auth()
+headers = create_headers(bearer_token)
+
+#keywords, (__ __ = __ and __), (___) OR (___) = either one.
+keyword = "(BTS fans) OR (BTS fangirls) OR (BTS kpop) OR (BTS crazy) lang:en"
+
+#dates included
+start_time = "2017-03-01T00:00:00.000Z"
+end_time = "2018-03-31T00:00:00.000Z"
+
+#results returned
+max_results = 500
